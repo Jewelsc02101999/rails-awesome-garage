@@ -6,3 +6,6 @@
     <p><%=car.created_at.strftime("%a %b %e at %l:M %p") %></li>
     <p><%= car.owner.nickname%></p>
   <%end%>
+
+<%= link_to "home", cars_path%>
+<%= link_to "my garage", favourites_path%>

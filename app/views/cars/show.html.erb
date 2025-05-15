@@ -4,4 +4,31 @@
     <h3><%= @car.model%> </h3>
     <p><%= @car.fuel%></p>
     <p><%= @car.year%></p>
-    <br>
+    <hr>
+
+<h3>Add to favourites</h3>
+<% if @car.favourites.empty? %>
+
+<%= simple_form_for [@car, @favourite] do |f| %>
+  <%= f.submit "Add to favourites"%>
+  <% end %>
+<% else %>
+  <p>This car is already in your garage!
+<% end %>
+
+
+
+<h2>write your review here</h2>
+
+<%= simple_form_for [@car, @review] do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :rating, collection: 1..5 %>
+  <%= f.submit "submit"%>
+<% end %>
+
+
+
+<% @car.reviews.each do |review|%>
+    <p><%= review.comment %></p>
+    <p><%= '⭐️' * review.rating %></p>
+  <%end%>
