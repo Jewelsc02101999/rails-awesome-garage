@@ -1,11 +1,21 @@
-<h1>All of our Available Cars</h1>
 
-  <% @cars.each do |car|%>
-    <h2><%= car.brand %></h2>
-    <h3><%= car.model%></h3>
-    <p><%=car.created_at.strftime("%a %b %e at %l:M %p") %></li>
-    <p><%= car.owner.nickname%></p>
-  <%end%>
 
-<%= link_to "home", cars_path%>
-<%= link_to "my garage", favourites_path%>
+<h1 style= "text-align: center">All of our Available Cars</h1>
+
+ <% @cars.each do |car|%>
+
+  <div class="card-trip">
+    <div style="padding:10px" >
+        <h2><%= car.brand %></h2>
+        <h3><%= car.model%></h3>
+        <p><%=car.created_at.strftime("%a %b %e at %l:M %p") %></li>
+    </div>
+    <img src = <%=car.image_url %>/>
+    <div class="card-trip-infos">
+      <div>
+      <p> 💬 Comment</p>
+      </div>
+      <p class="card-trip-user avatar-bordered"><%= car.owner.nickname%></p>
+    </div>
+</div>
+ <%end%>

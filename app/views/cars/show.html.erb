@@ -1,34 +1,46 @@
 
-    <h1><%= @car.brand %> </h1>
-    <h2><%= @car.model%> </h2>
-    <h3><%= @car.model%> </h3>
-    <p><%= @car.fuel%></p>
-    <p><%= @car.year%></p>
-    <hr>
 
-<h3>Add to favourites</h3>
-<% if @car.favourites.empty? %>
-
-<%= simple_form_for [@car, @favourite] do |f| %>
-  <%= f.submit "Add to favourites"%>
-  <% end %>
-<% else %>
-  <p>This car is already in your garage!
-<% end %>
+<div class="card-product">
+    <img src = <%=@car.image_url %>/>
+      <div class="card-product-btn">
+        <% if @car.favourites.empty? %>
+          <div style ="position: absolute, top: -100px">
+            <%= simple_form_for [@car, @favourite] do |f| %>
+              <%= f.submit "Add to favourites"%>
+              <% end %>
+            <% else %>
+              <p>This car is already in your garage!
+            <% end %>
+        </div>
+    </div>
 
 
 
-<h2>write your review here</h2>
+      <div class="card-product-info">
+          <div>
+            <h1><%= @car.brand %> </h1>
+            <h2><%= @car.model%> </h2>
+            <p><%= @car.fuel%></p>
+            <p><%= @car.year%></p>
+          </div>
+          <div>
+            <h2>write your review here</h2>
 
-<%= simple_form_for [@car, @review] do |f| %>
-  <%= f.input :comment %>
-  <%= f.input :rating, collection: 1..5 %>
-  <%= f.submit "submit"%>
-<% end %>
+            <%= simple_form_for [@car, @review] do |f| %>
+              <%= f.input :comment %>
+              <%= f.input :rating, collection: 1..5 %>
+              <%= f.submit "submit"%>
+            <% end %>
+          </div>
+      </div>
+
+      <hr>
+        <div class="card-product-comment">
+            <% @car.reviews.each do |review|%>
+                <p><%= review.comment %></p>
+                <p><%= '⭐️' * review.rating %></p>
+              <%end%>
+        </div>
 
 
-
-<% @car.reviews.each do |review|%>
-    <p><%= review.comment %></p>
-    <p><%= '⭐️' * review.rating %></p>
-  <%end%>
+</div>

@@ -1,14 +1,18 @@
-<h1>My Garage</h1>
-
-<ul>
 <% @favourites.each do |favourite|%>
-    <li>
-    <h2><%= favourite.car.brand %></h2>
-    <h2><%= favourite.car.model %></h2>
-    <p><%= favourite.car.year %> | <%= favourite.car.fuel %> | <%= link_to "delete", favourite_path(favourite), data: {turbo_confirm: "are you sure?"} %></p>
-    </li>
-  <%end%>
-  </ul>
 
-<%= link_to "home", cars_path%>
-<%= link_to "my garage", favourites_path%>
+  <div class="card-products">
+
+    <img src= <%=favourite.car.image_url %>/>
+    <div class="card-products-infos">
+      <h1>My Garage</h1>
+
+
+      <h2><%= favourite.car.brand %></h2>
+      <h2><%= favourite.car.model %></h2>
+      <p><%= favourite.car.year %> | <%= favourite.car.fuel %> | <%= link_to "🗑️", favourite_path(favourite), data: {turbo_confirm: "are you sure?"} %></p>
+
+
+
+    </div>
+  </div>
+ <%end%>
